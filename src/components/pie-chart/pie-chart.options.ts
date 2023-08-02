@@ -7,7 +7,6 @@ const pieChartData: PieChartData = {
 };
 
 const defaultPieChartOptions: PieChartOptions = {
-  type: 'pie',
   responsive: true,
   cutout: '0',
   theme: 'color-health',
