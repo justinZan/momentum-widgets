@@ -1,21 +1,26 @@
 # @momentum-design/widgets
 
-A pure ui library based on web components that is for building dashboards.
+A pure ui library based on web components and chart.js that is for building dashboards.
 
 ## How to Start
 
-Using unpkg CDN:
+### umd
+
+The UMD build is also available on unpkg.com:
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/@momentum-design/widgets/dist/widgets.css">
 <script src="https://unpkg.com/@momentum-design/widgets/dist/widgets.umd.js"></script>
 ```
 
-That will append a global object **mdw** to **window**. 
+Then you can find the library on `window.mdw`.
 
-Using npm:
+### npm
+
+NPM is the easiest and fastest way to get started using this library. It is also the recommended installation method when building single-page applications (SPAs). It pairs nicely with a CommonJS module bundler such as Webpack.
 
 ```bash
+# latest stable
 $ npm i @momentum-design/widgets
 ```
 
@@ -54,7 +59,7 @@ $ npm i @momentum-design/widgets
 
 ### Prerequisites
 
-- Install [Node.js](https://nodejs.org/) which includes [Node Package Manager](https://docs.npmjs.com/getting-started). We recommend to use version 16.
+- Install [Node.js](https://nodejs.org/) which includes [Node Package Manager](https://docs.npmjs.com/getting-started). We recommend to use version 16 and above.
 
 ### Steps to Start
 

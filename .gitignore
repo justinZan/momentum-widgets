@@ -9,5 +9,6 @@ false
 build
 coverage-report
 /api
-/website/docs/getting-started.md
+/website/docs/api
+/website/docs/tutorials/getting-started.md
 /website/blog/CHANGELOG.md

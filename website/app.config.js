@@ -1,4 +1,5 @@
 module.exports = {
+  staticDirectories: ['static', '../'],
   url: 'https://momentum-design.github.io',
   baseUrl: '/',
   logoUrl: '/img/logo.png',
@@ -9,16 +10,20 @@ module.exports = {
   githubUser: 'momentum-design',
   githubRepo: 'momentum-widgets',
   copyright: `Copyright © ${new Date().getFullYear()} Cisco and/or its affiliates. All rights reserved.`,
-  docMenuLabel: 'Docs',
   get menus() {
     return [
       {
         type: 'docSidebar',
-        sidebarId: 'tutorialSidebar',
+        sidebarId: 'tutorials',
         position: 'left',
-        label: this.docMenuLabel,
+        label: 'Tutorials',
       },
-      { href: '/api/index.html', label: 'API', position: 'left', prependBaseUrlToHref: true },
+      {
+        type: 'docSidebar',
+        sidebarId: 'api',
+        position: 'left',
+        label: 'API',
+      },
       { to: '/blog', label: 'Blog', position: 'left' },
       {
         href: `https://github.com/${this.githubUser}/${this.githubRepo}`,
@@ -39,8 +44,12 @@ module.exports = {
         title: 'This Site',
         items: [
           {
-            label: this.docMenuLabel,
-            to: '/docs/getting-started',
+            label: 'Tutorials',
+            to: '/docs/tutorials',
+          },
+          {
+            label: 'API',
+            to: '/docs/api',
           },
           {
             label: 'Blog',
@@ -84,4 +93,10 @@ module.exports = {
       },
     ];
   },
+  get externalStylesheets() {
+    return [`${this.baseUrl}dist-lib/widgets.css`];
+  },
+  get externalScripts() {
+    return [`${this.baseUrl}dist-lib/widgets.umd.js`];
+  }
 };

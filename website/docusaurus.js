@@ -1,3 +1,4 @@
+const path = require('path');
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 const lightCodeTheme = require('prism-react-renderer/themes/github');
@@ -8,7 +9,7 @@ const getConfig = (app) => (
     title: app.title,
     tagline: app.tagline,
     favicon: 'img/favicon.ico',
-    staticDirectories: ['static', 'dist-lib'],
+    staticDirectories: app.staticDirectories,
 
     // Set the production url of your site here
     url: app.url,
@@ -45,8 +46,8 @@ const getConfig = (app) => (
             sidebarPath: require.resolve('./sidebars.js'),
             // Please change this to your repo.
             // Remove this to remove the "edit this page" links.
-            editUrl:
-              `https://github.com/${app.githubUser}/${app.githubRepo}/tree/main/website/`,
+            // editUrl:
+            //   `https://github.com/${app.githubUser}/${app.githubRepo}/tree/main/website/`,
           },
           blog: {
             showReadingTime: true,
@@ -112,11 +113,36 @@ const getConfig = (app) => (
       'plugin-image-zoom',
       'docusaurus-plugin-sass',
       '@cmfcmf/docusaurus-search-local',
+      ['docusaurus-plugin-typedoc', {
+        id: 'api',
+        entryPoints: ['../src/index.ts'],
+        tsconfig: '../tsconfig.json',
+        out: 'api',
+        watch: process.env.TYPEDOC_WATCH,
+        // you can add typedoc options here
+        readme: 'none',
+      }],
+      (context, options) => {
+        return {
+          name: 'my-dev-server',
+          configureWebpack(config, isServer, utils) {
+            return {
+              devServer: {
+                hot: false,
+                liveReload: true,
+                watchFiles: {
+                  paths: ['static/dist-lib/**'],
+                },
+              },
+            }
+          }
+        };
+      }
     ],
 
-    stylesheets: ['dist-lib/widgets.css'],
+    stylesheets: app.externalStylesheets,
 
-    scripts: ['dist-lib/widgets.umd.js'],
+    scripts: app.externalScripts,
   });
 
 module.exports = {
